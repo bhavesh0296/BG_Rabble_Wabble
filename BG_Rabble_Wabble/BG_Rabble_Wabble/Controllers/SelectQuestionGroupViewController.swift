@@ -18,7 +18,7 @@ class SelectQuestionGroupViewController: UIViewController {
     }
 
     public let questionGroups = QuestionGroup.allGroups()
-    private var selectionQuestionGroup: QuestionGroup!
+    private var selectedQuestionGroup: QuestionGroup!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        selectionQuestionGroup = questionGroups[indexPath.row]
+        selectedQuestionGroup = questionGroups[indexPath.row]
         return indexPath
     }
 
@@ -60,18 +60,19 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
         guard let viewController = segue.destination as? QuestionViewController else {
             return
         }
-        viewController.questionGroup = selectionQuestionGroup
+//        viewController.questionGroup = selectionQuestionGroup
+        viewController.questionStrategy = RandomQuestionStrategy(questionGroup: selectedQuestionGroup)
         viewController.delegate = self
     }
 }
 
 extension SelectQuestionGroupViewController: QuestionViewControllerDelegate {
 
-    func questionViewController(_ viewController: QuestionViewController, didCancel questionGroup: QuestionGroup, at questionIndex: Int) {
+    func questionViewController(_ viewController: QuestionViewController, didCancel questionGroup: QuestionStrategy, at questionIndex: Int) {
         navigationController?.popToViewController(self, animated: true)
     }
 
-    func questionViewController(_ viewController: QuestionViewController, didComplete questionGroup: QuestionGroup) {
+    func questionViewController(_ viewController: QuestionViewController, didComplete questionGroup: QuestionStrategy) {
         navigationController?.popToViewController(self, animated: true)
     }
 

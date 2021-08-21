@@ -34,6 +34,7 @@ public class RandomQuestionStrategy: QuestionStrategy {
         guard questionIndex + 1 < questions.count else {
             return false
         }
+        questionIndex += 1
         return true
     }
 

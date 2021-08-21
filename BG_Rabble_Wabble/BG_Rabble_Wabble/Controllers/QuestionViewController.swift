@@ -11,11 +11,11 @@ import UIKit
 public class QuestionViewController: UIViewController {
 
 //    public var questionGroup = QuestionGroup.basicPhrases()
-    public var questionGroup: QuestionGroup! {
-        didSet {
-            navigationItem.title = questionGroup.title
-        }
-    }
+//    public var questionGroup: QuestionGroup! {
+//        didSet {
+//            navigationItem.title = questionGroup.title
+//        }
+//    }
 
     private lazy var questionIndexItem: UIBarButtonItem = {
         let item = UIBarButtonItem(title: "",
@@ -26,6 +26,12 @@ public class QuestionViewController: UIViewController {
         navigationItem.rightBarButtonItem = item
         return item
     }()
+
+    public var questionStrategy: QuestionStrategy! {
+        didSet {
+            navigationItem.title = questionStrategy.title
+        }
+    }
 
     public weak var delegate: QuestionViewControllerDelegate?
     public var questionIndex = 0
@@ -53,19 +59,32 @@ public class QuestionViewController: UIViewController {
     }
 
     @IBAction func handleCorrect(_ sender: UIButton) {
-        correctCount += 1
-        questionView.correctCountLabel.text = "\(correctCount)"
+//        correctCount += 1
+//        questionView.correctCountLabel.text = "\(correctCount)"
+//        showNextQuestion()
+
+        let question = questionStrategy.currentQuestion()
+
+        questionStrategy.markQuestionCorrect(question)
+        questionView.correctCountLabel.text = "\(questionStrategy.correctCount)"
         showNextQuestion()
     }
 
     @IBAction func handleIncorrect(_ sender: UIButton) {
-        incorrectCount += 1
-        questionView.incorrectCountLabel.text = "\(incorrectCount)"
+//        incorrectCount += 1
+//        questionView.incorrectCountLabel.text = "\(incorrectCount)"
+//        showNextQuestion()
+
+        let question = questionStrategy.currentQuestion()
+
+        questionStrategy.markQuestionIncorrect(question)
+        questionView.incorrectCountLabel.text = "\(questionStrategy.incorrectCount)"
         showNextQuestion()
     }
 
     //MARK:- Helper Methods
     private func showNextQuestion() {
+        /*
         questionIndex += 1
         guard questionIndex < questionGroup.questions.count else {
             print("reach upto end of questions")
@@ -73,9 +92,18 @@ public class QuestionViewController: UIViewController {
             return
         }
         showQuestion()
+        */
+
+        guard questionStrategy.advanceToNextQuestion() else {
+            delegate?.questionViewController(self,
+                                             didComplete: questionStrategy)
+            return
+        }
+        showQuestion()
     }
 
     private func showQuestion() {
+        /*
         let question = questionGroup.questions[questionIndex]
 
         questionView.promptLabel.text = question.prompt
@@ -86,6 +114,17 @@ public class QuestionViewController: UIViewController {
         questionView.hintLabel.isHidden = true
 
         questionIndexItem.title = "\(questionIndex + 1)/\(questionGroup.questions.count) "
+        */
+
+        let question = questionStrategy.currentQuestion()
+        questionView.promptLabel.text = question.prompt
+        questionView.hintLabel.text = question.hint
+        questionView.answerLabel.text = question.answer
+
+        questionView.answerLabel.isHidden = true
+        questionView.hintLabel.isHidden = true
+
+        questionIndexItem.title = questionStrategy.questionIndexTitle()
     }
 
     private func setupCancelButton() {
@@ -99,14 +138,14 @@ public class QuestionViewController: UIViewController {
 
     @objc func handleCancelButton(sender: Any) {
         delegate?.questionViewController(self,
-                                         didCancel: questionGroup,
+                                         didCancel: questionStrategy,
                                          at: questionIndex)
     }
 }
 
 public protocol QuestionViewControllerDelegate: class {
 
-    func questionViewController(_ viewController: QuestionViewController, didCancel questionGroup: QuestionGroup, at questionIndex: Int)
+    func questionViewController(_ viewController: QuestionViewController, didCancel questionGroup: QuestionStrategy, at questionIndex: Int)
 
-    func questionViewController(_ viewController: QuestionViewController, didComplete questionGroup: QuestionGroup)
+    func questionViewController(_ viewController: QuestionViewController, didComplete questionGroup: QuestionStrategy)
 }
