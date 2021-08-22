@@ -30,8 +30,13 @@ public class AppSettings {
         }
     }
 
-    public func questionStrategy(for questionGroup: QuestionGroup) -> QuestionStrategy {
-        return questionStrategyType.questionStrategy(for: questionGroup)
+//    public func questionStrategy(for questionGroup: QuestionGroup) -> QuestionStrategy {
+//        return questionStrategyType.questionStrategy(for: questionGroup)
+//        return questionStrategyType.questionStrategy(for: )
+//    }
+
+    public func questionStrategy(for questionGroupCareTaker: QuestionGroupCareTaker) -> QuestionStrategy {
+        return questionStrategyType.questionStrategy(for: questionGroupCareTaker)
     }
 
 
@@ -50,12 +55,21 @@ public enum QuestionStrategyType: Int, CaseIterable {
         }
     }
 
-    public func questionStrategy(for questionGroup: QuestionGroup) -> QuestionStrategy {
+//    public func questionStrategy(for questionGroup: QuestionGroup) -> QuestionStrategy {
+//        switch self {
+//        case .random:
+//            return RandomQuestionStrategy(questionGroup: questionGroup)
+//        case .sequential:
+//            return SequentialQuestionStrategy(questionGroup: questionGroup)
+//        }
+//    }
+
+    public func questionStrategy(for questionGroupCareTaker: QuestionGroupCareTaker) -> QuestionStrategy {
         switch self {
         case .random:
-            return RandomQuestionStrategy(questionGroup: questionGroup)
+            return RandomQuestionStrategy(questionGroupCareTaker: questionGroupCareTaker)
         case .sequential:
-            return SequentialQuestionStrategy(questionGroup: questionGroup)
+            return SequentialQuestionStrategy(questionGroupCaretaker: questionGroupCareTaker)
         }
     }
 }
