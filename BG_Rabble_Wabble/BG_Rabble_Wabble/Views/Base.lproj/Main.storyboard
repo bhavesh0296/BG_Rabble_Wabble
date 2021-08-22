@@ -101,9 +101,28 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2619" y="171"/>
+            <point key="canvasLocation" x="2748" y="654"/>
         </scene>
-        <!--QuestionGroupCell-->
+        <!--App Settings-->
+        <scene sceneID="GwR-Ds-wRH">
+            <objects>
+                <tableViewController id="RKS-Ke-b6E" customClass="AppSetttingsViewController" customModule="BG_Rabble_Wabble" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wik-e6-w9i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="RKS-Ke-b6E" id="DdJ-Yb-fEM"/>
+                            <outlet property="delegate" destination="RKS-Ke-b6E" id="K7m-oK-92c"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="App Settings" id="eV8-Yd-s0c"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2AX-Eg-yKT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2770" y="-52"/>
+        </scene>
+        <!--Select Question Group-->
         <scene sceneID="829-zr-aRP">
             <objects>
                 <viewController id="WpD-5x-0Dr" customClass="SelectQuestionGroupViewController" customModule="BG_Rabble_Wabble" customModuleProvider="target" sceneMemberID="viewController">
@@ -161,7 +180,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pl9-1W-qar"/>
                     </view>
-                    <navigationItem key="navigationItem" title="QuestionGroupCell" id="Wem-e2-HEA"/>
+                    <navigationItem key="navigationItem" title="Select Question Group" id="Wem-e2-HEA">
+                        <barButtonItem key="leftBarButtonItem" image="ic_settings" id="hIC-vQ-0gB">
+                            <connections>
+                                <segue destination="RKS-Ke-b6E" kind="show" id="nNN-3s-mPU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="J0g-sU-tRf" id="Rcp-4J-neK"/>
                     </connections>
@@ -192,5 +217,6 @@
     <resources>
         <image name="ic_circle_check" width="80" height="80"/>
         <image name="ic_circle_x" width="80" height="80"/>
+        <image name="ic_settings" width="26" height="26"/>
     </resources>
 </document>

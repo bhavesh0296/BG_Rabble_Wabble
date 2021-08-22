@@ -19,6 +19,7 @@ class SelectQuestionGroupViewController: UIViewController {
 
     public let questionGroups = QuestionGroup.allGroups()
     private var selectedQuestionGroup: QuestionGroup!
+    private let appSettings = AppSettings.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,8 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
             return
         }
 //        viewController.questionGroup = selectionQuestionGroup
-        viewController.questionStrategy = RandomQuestionStrategy(questionGroup: selectedQuestionGroup)
+//        viewController.questionStrategy = RandomQuestionStrategy(questionGroup: selectedQuestionGroup)
+        viewController.questionStrategy = appSettings.questionStrategy(for: selectedQuestionGroup)
         viewController.delegate = self
     }
 }
