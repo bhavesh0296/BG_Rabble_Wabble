@@ -122,6 +122,14 @@
             </objects>
             <point key="canvasLocation" x="2770" y="-52"/>
         </scene>
+        <!--NewQuestionGroup-->
+        <scene sceneID="cW2-q3-c6u">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewQuestionGroup" id="z0d-rY-6VS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="shB-1M-GYZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1752" y="-316"/>
+        </scene>
         <!--Select Question Group-->
         <scene sceneID="829-zr-aRP">
             <objects>
@@ -184,6 +192,11 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_settings" id="hIC-vQ-0gB">
                             <connections>
                                 <segue destination="RKS-Ke-b6E" kind="show" id="nNN-3s-mPU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9Ro-fN-EKv">
+                            <connections>
+                                <segue destination="z0d-rY-6VS" kind="presentation" id="NZx-hu-FYx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

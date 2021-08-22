@@ -80,15 +80,25 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let viewController = segue.destination as? QuestionViewController else {
-            return
-        }
+//        guard let viewController = segue.destination as? QuestionViewController else {
+//            return
+//        }
 //        viewController.questionGroup = selectionQuestionGroup
 //        viewController.questionStrategy = RandomQuestionStrategy(questionGroup: selectedQuestionGroup)
 //        viewController.questionStrategy = appSettings.questionStrategy(for: selectedQuestionGroup)
-        viewController.questionStrategy = appSettings.questionStrategy(for: questionGroupCaretaker)
-        viewController.delegate = self
+//        viewController.questionStrategy = appSettings.questionStrategy(for: questionGroupCaretaker)
+//        viewController.delegate = self
+
+        if let viewController = segue.destination as? QuestionViewController {
+            viewController.questionStrategy = appSettings.questionStrategy(for: questionGroupCaretaker)
+            viewController.delegate = self
+        } else if let navController = segue.destination as? UINavigationController,
+            let viewController = navController.topViewController as? CreateQuestionGroupViewController {
+            viewController.delegate = self
+        }
     }
+
+
 }
 
 extension SelectQuestionGroupViewController: QuestionViewControllerDelegate {
@@ -101,5 +111,19 @@ extension SelectQuestionGroupViewController: QuestionViewControllerDelegate {
         navigationController?.popToViewController(self, animated: true)
     }
 
+}
+
+extension SelectQuestionGroupViewController: CreateQuestionGroupViewControllerDelegate {
+
+    func createQuestionGroupViewControllerDidCancel(_ viewController: CreateQuestionGroupViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func createQuestionGroupViewController(_ viewController: CreateQuestionGroupViewController, created questionGroup: QuestionGroup) {
+        questionGroupCaretaker.questionGroups.append(questionGroup)
+        try? questionGroupCaretaker.save()
+        dismiss(animated: true, completion: nil)
+        tableView.reloadData()
+    }
 
 }
