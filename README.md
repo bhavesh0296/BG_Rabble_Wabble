@@ -1,4 +1,4 @@
-# BG_Rabble_Wabble
+# BG_Rabble_Wabble ![Quiz](https://github.com/bhavesh0296/BG_Rabble_Wabble/blob/84e5235e7a7818d043a5fc117895e90700242bbc/Screenshot/logo.png)
 A language learning app
 
 <kbd>
