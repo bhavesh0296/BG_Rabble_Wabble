@@ -1,19 +1,18 @@
 # BG_Rabble_Wabble
 A language learning app
-MVC Architecture used
 
-<!-- <kbd>
-  <img src="https://github.com/bhavesh0296/Event/blob/785a9426eb8da4566bcbbf8871a02cdc6e73ab92/Screenshot/eventDashboard.PNG" alt="drawing" width="200"/> 
+<kbd>
+  <img src="https://github.com/bhavesh0296/BG_Rabble_Wabble/blob/88dc0fe85a64fbf0e2aafe0839aeda78f4a81350/Screenshot/questionGroup.png" alt="drawing" width="200"/> 
 </kbd>
 &nbsp;
 <kbd>
-  <img src="https://github.com/bhavesh0296/Event/blob/785a9426eb8da4566bcbbf8871a02cdc6e73ab92/Screenshot/eventCardTapped.PNG" alt="drawing" width="200"/>
+  <img src="https://github.com/bhavesh0296/BG_Rabble_Wabble/blob/88dc0fe85a64fbf0e2aafe0839aeda78f4a81350/Screenshot/questionQuiz.png" alt="drawing" width="200"/>
 </kbd>
 &nbsp;
 <kbd>
-  <img src="https://github.com/bhavesh0296/Event/blob/785a9426eb8da4566bcbbf8871a02cdc6e73ab92/Screenshot/searchEvent.PNG" alt="drawing" width="200"/>
+  <img src="https://github.com/bhavesh0296/BG_Rabble_Wabble/blob/88dc0fe85a64fbf0e2aafe0839aeda78f4a81350/Screenshot/appSetting.png" alt="drawing" width="200"/>
 </kbd>
 &nbsp;
 <kbd>
-  <img src="https://github.com/bhavesh0296/Event/blob/785a9426eb8da4566bcbbf8871a02cdc6e73ab92/Screenshot/sideMenuShow.PNG" alt="drawing" width="200"/>
-</kbd> -->
+  <img src="https://github.com/bhavesh0296/BG_Rabble_Wabble/blob/88dc0fe85a64fbf0e2aafe0839aeda78f4a81350/Screenshot/addQuestion.png" alt="drawing" width="200"/>
+</kbd>
